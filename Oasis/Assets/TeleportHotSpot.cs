@@ -10,6 +10,8 @@ public class TeleportHotSpot : MonoBehaviour {
     bool highlight;
     bool highlightQue;
     public MeshRenderer highlightMesh;
+    public Material activeMaterial;
+    public Material highlightedMaterial;
 
     void Start()
     {
@@ -29,7 +31,7 @@ public class TeleportHotSpot : MonoBehaviour {
         {
             if (highlight)
             {
-                highlightMesh.enabled = false;
+                highlightMesh.material = activeMaterial;
             }
             highlight = false;
         }
@@ -45,7 +47,7 @@ public class TeleportHotSpot : MonoBehaviour {
         // Handle activating the highlight mesh
         if (!highlight)
         {
-            highlightMesh.enabled = true;
+            highlightMesh.material = highlightedMaterial;
         }
         highlight = true;
         highlightQue = true;
