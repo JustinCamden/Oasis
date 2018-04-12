@@ -31,13 +31,13 @@ public class Clock : MonoBehaviour {
         get { return mHours; }
     }
     [SerializeField]
-    private float mTime;
+    private float mTimePercent;
     [SerializeField]
     private float maxTime;
 
-    public float time
+    public float timePercent
     {
-        get { return mTime / maxTime; }
+        get { return mTimePercent; }
     }
 
     // Use this for initialization
@@ -65,6 +65,8 @@ public class Clock : MonoBehaviour {
             mHours += 1f;
             mSeconds -= 60f;
         }
+
+        mTimePercent = Time.time / maxTime;
 	}
 }
 
