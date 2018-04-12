@@ -6,6 +6,8 @@ using Valve.VR;
 public class TeleportVive : MonoBehaviour {
     [Tooltip("Parabolic Pointer object to pull destination points from, and to assign to each controller.")]
     public ParabolicPointer Pointer;
+    [Tooltip("Laser pointer object to pull hotspots from.")]
+    public ViveControllerInputLeft laserPointer;
     /// Origin of SteamVR tracking space
     [Tooltip("Origin of the SteamVR tracking space")]
     public Transform OriginTransform;
@@ -191,6 +193,10 @@ public class TeleportVive : MonoBehaviour {
             int index = (int)ActiveController.index;
             var device = SteamVR_Controller.Input(index);
             bool shouldTeleport = device.GetPressUp(SteamVR_Controller.ButtonMask.Touchpad);
+            if (shouldTeleport)
+            {
+                shouldTeleport = !laserPointer.raycasting;
+            }
             bool shouldCancel = device.GetPressUp(SteamVR_Controller.ButtonMask.Grip);
             if (shouldTeleport || shouldCancel)
             {

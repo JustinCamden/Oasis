@@ -4,6 +4,13 @@ using UnityEngine;
 
 public class ViveControllerInputLeft : MonoBehaviour {
 
+    /// Origin of SteamVR tracking space
+    [Tooltip("Origin of the SteamVR tracking space")]
+    public Transform OriginTransform;
+    /// Origin of the player's head
+    [Tooltip("Transform of the player's head")]
+    public Transform HeadTransform;
+
     // Tracked object references
     private SteamVR_TrackedObject trackedObj;
     private SteamVR_TrackedController controller;
@@ -13,11 +20,13 @@ public class ViveControllerInputLeft : MonoBehaviour {
     }
 
     // laser pointer variables
-    bool raycasting;
+    public bool raycasting;
     TeleportHotSpot hotspot;
     private LineRenderer laserPointer;
     public float laserRange = 1000f;
-    
+    public TeleportVive teleporter;
+
+
 
 
     void Start()
@@ -36,8 +45,11 @@ public class ViveControllerInputLeft : MonoBehaviour {
     // Activate raycasting when pad clicked
     private void ControllerPadClicked(object sender, ClickedEventArgs e)
     {
-        raycasting = true;
-        laserPointer.enabled = true;
+        if (teleporter.CurrentTeleportState == TeleportState.None)
+        {
+            raycasting = true;
+            laserPointer.enabled = true;
+        }
     }
 
     // Deactivate raycasting when pad unclciked
@@ -45,6 +57,10 @@ public class ViveControllerInputLeft : MonoBehaviour {
     {
         raycasting = false;
         laserPointer.enabled = false;
+        if (hotspot)
+        {
+            TeleportToHotSpot();
+        }
     }
 
     // Update is called once per frame
@@ -68,7 +84,11 @@ public class ViveControllerInputLeft : MonoBehaviour {
                 hotspot = hit.collider.gameObject.GetComponent<TeleportHotSpot>();
                 if (hotspot)
                 {
-                    Debug.Log("Raycast hit hotspot");
+                    hotspot.Highlight();
+                }
+                else
+                {
+                    hotspot = null;
                 }
             }
 
@@ -76,7 +96,16 @@ public class ViveControllerInputLeft : MonoBehaviour {
             {
                 // Update pointer end position
                 laserPointer.SetPosition(1, transform.position + transform.forward * laserRange);
+                hotspot = null;
             }
         }
+    }
+
+    void TeleportToHotSpot()
+    {
+        // We have finished fading out - time to teleport!
+        Vector3 offset = OriginTransform.position - HeadTransform.position;
+        offset.y = 0;
+        OriginTransform.position = hotspot.HotSpotPosition.transform.position;
     }
 }
