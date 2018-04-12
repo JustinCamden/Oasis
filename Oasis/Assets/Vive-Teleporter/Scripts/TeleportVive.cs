@@ -156,6 +156,23 @@ public class TeleportVive : MonoBehaviour {
             FadeMaterialInstance.SetFloat(MaterialFadeID, alpha);
             Graphics.DrawMeshNow(PlaneMesh, transform.localToWorldMatrix * local);
         }
+
+        else if (laserPointer.CurrentTeleportState == TeleportState.Teleporting)
+        {
+            // Perform the fading in/fading out animation, if we are teleporting.  This is essentially a triangle wave
+            // in/out, and the user teleports when it is fully black.
+            float alpha = Mathf.Clamp01((Time.time - laserPointer.TeleportTimeMarker) / (TeleportFadeDuration / 2));
+            if (laserPointer.FadingIn)
+            {
+                alpha = 1 - alpha;
+            }
+
+
+            Matrix4x4 local = Matrix4x4.TRS(Vector3.forward * 0.3f, Quaternion.identity, Vector3.one);
+            FadeMaterialInstance.SetPass(0);
+            FadeMaterialInstance.SetFloat(MaterialFadeID, alpha);
+            Graphics.DrawMeshNow(PlaneMesh, transform.localToWorldMatrix * local);
+        }
     }
 
 	void Update ()
@@ -193,9 +210,9 @@ public class TeleportVive : MonoBehaviour {
             int index = (int)ActiveController.index;
             var device = SteamVR_Controller.Input(index);
             bool shouldTeleport = device.GetPressUp(SteamVR_Controller.ButtonMask.Touchpad);
-            if (shouldTeleport)
+            if (shouldTeleport && laserPointer.CurrentTeleportState != TeleportState.None)
             {
-                shouldTeleport = !laserPointer.raycasting;
+                shouldTeleport = false;
             }
             bool shouldCancel = device.GetPressUp(SteamVR_Controller.ButtonMask.Grip);
             if (shouldTeleport || shouldCancel)
