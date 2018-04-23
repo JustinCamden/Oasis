@@ -45,6 +45,11 @@ public class DialogueTrigger : MonoBehaviour {
     [SerializeField]
     private int runningActors = 0;
 
+    [SerializeField]
+    private bool forceActorsToLocations = false;
+    [SerializeField]
+    private Vector3[] forcedLocations;
+
     // Use this for initialization
     void Start () {
         startTimePercent = Clock.CalcTimePercent(startSecond, startMinute, startHour);
@@ -56,12 +61,23 @@ public class DialogueTrigger : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
         if (currDialogeState == DialogueState.BeforeRunning &&
-            actorsInRange &&
             WithinTimeRange())
         {
-            RunDialogue();
+            if (forceActorsToLocations)
+            {
+                for (int i = 0; i < actors.Length; i++)
+                {
+                    actors[i].transform.position = forcedLocations[i];
+                    RunDialogue();
+                }
+            }
+            else if (actorsInRange)
+            {
+                RunDialogue();
+            }
         }
-	}
+
+    }
 
     private void OnTriggerEnter(Collider other)
     {
