@@ -51,10 +51,7 @@ public class DialogueTrigger : MonoBehaviour {
     private Position[] forcedLocations;
 
     [SerializeField]
-    private AudioSource myAudioSource;
-
-    [SerializeField]
-    private AudioClip sceneAudio;
+    private AudioSource sceneAudio;
 
     // Use this for initialization
     void Start () {
@@ -62,11 +59,6 @@ public class DialogueTrigger : MonoBehaviour {
         endTimePercent = Clock.CalcTimePercent(endSecond, endMinute, endHour);
         overlappedActors = new List<Actor>();
         Clock.worldClock.onDayReset += OnDayReset;
-
-        if (!myAudioSource && sceneAudio)
-        {
-            myAudioSource = GetComponent<AudioSource>();
-        }
 	}
 	
 	// Update is called once per frame
@@ -142,7 +134,10 @@ public class DialogueTrigger : MonoBehaviour {
             actors[i].RunDialogue(lines[i], this);
             runningActors += 1;
         }
-        myAudioSource.Play();
+        if (sceneAudio)
+        {
+            sceneAudio.Play();
+        }
     }
 
     // Reset dialogue
@@ -153,7 +148,11 @@ public class DialogueTrigger : MonoBehaviour {
         {
             currDialogeState = DialogueState.AfterRunning;
         }
-        myAudioSource.Stop();
+        if (sceneAudio)
+        {
+            sceneAudio.Stop();
+            sceneAudio.time = 0f;
+        }
     }
 
     void OnDayReset()

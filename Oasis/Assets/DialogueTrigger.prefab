@@ -53,10 +53,10 @@ AudioSource:
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 0}
-  m_PlayOnAwake: 1
+  m_PlayOnAwake: 0
   m_Volume: 1
   m_Pitch: 1
-  Loop: 0
+  Loop: 1
   Mute: 0
   Spatialize: 0
   SpatializePostEffects: 0
@@ -149,8 +149,7 @@ MonoBehaviour:
   runningActors: 0
   forceActorsToLocations: 0
   forcedLocations: []
-  myAudioSource: {fileID: 82129795421717930}
-  sceneAudio: {fileID: 0}
+  sceneAudio: {fileID: 82129795421717930}
 --- !u!114 &114940731215138456
 MonoBehaviour:
   m_ObjectHideFlags: 1
