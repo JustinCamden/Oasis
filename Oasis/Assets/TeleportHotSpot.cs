@@ -48,8 +48,8 @@ public class TeleportHotSpot : MonoBehaviour {
         if (!highlight)
         {
             highlightMesh.material = highlightedMaterial;
+            highlight = true;
         }
-        highlight = true;
         highlightQue = true;
     }
 

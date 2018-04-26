@@ -225,6 +225,7 @@ public class TeleportVive : MonoBehaviour {
                     // Begin teleport sequence
                     CurrentTeleportState = TeleportState.Teleporting;
                     TeleportTimeMarker = Time.time;
+                    OriginTransform.parent = null;
                 }
                 else
                     CurrentTeleportState = TeleportState.None;

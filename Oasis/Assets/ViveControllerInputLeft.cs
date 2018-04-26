@@ -20,13 +20,17 @@ public class ViveControllerInputLeft : MonoBehaviour {
     }
 
     // laser pointer variables
-    TeleportHotSpot hotspot;
+    TeleportHotSpot selectedHotspot;
+    Actor selectedActor;
     private LineRenderer laserPointer;
     public float laserRange = 1000f;
     public TeleportVive teleporter;
 
     // List of hotspots
     List<TeleportHotSpot> hotspots;
+
+    // List of actors
+    List<Actor> actors;
 
     public bool FadingIn = false;
     public float TeleportTimeMarker = -1f;
@@ -49,6 +53,7 @@ public class ViveControllerInputLeft : MonoBehaviour {
 
         // Populate teleport hotspots
         hotspots = new List<TeleportHotSpot>(FindObjectsOfType<TeleportHotSpot>());
+        actors = new List<Actor>(FindObjectsOfType<Actor>());
     }
 
     // Activate raycasting when pad clicked
@@ -63,6 +68,12 @@ public class ViveControllerInputLeft : MonoBehaviour {
                 currHotspot.highlightMesh.enabled = true;
                 currHotspot.highlightMesh.material = currHotspot.activeMaterial;
             }
+
+            foreach (Actor currActor in actors)
+            {
+                currActor.ActivateHighlight();
+            }
+
 
             CurrentTeleportState = TeleportState.Selecting;
             laserPointer.enabled = true;
@@ -81,12 +92,18 @@ public class ViveControllerInputLeft : MonoBehaviour {
                 currHotspot.highlightMesh.enabled = false;
             }
 
+            foreach (Actor currActor in actors)
+            {
+                currActor.DeactivateHighlight();
+            }
+
             laserPointer.enabled = false;
-            if (hotspot)
+            if (selectedHotspot || selectedActor)
             {
 
                 TeleportTimeMarker = Time.time;
                 CurrentTeleportState = TeleportState.Teleporting;
+                OriginTransform.parent = null;
             }
             else
             {
@@ -112,14 +129,28 @@ public class ViveControllerInputLeft : MonoBehaviour {
                 laserPointer.SetPosition(1, hit.point);
 
                 // Check if we hit a hotspot
-                hotspot = hit.collider.gameObject.GetComponent<TeleportHotSpot>();
-                if (hotspot)
+                selectedHotspot = hit.collider.gameObject.GetComponent<TeleportHotSpot>();
+                if (selectedHotspot)
                 {
-                    hotspot.Highlight();
+                    selectedHotspot.Highlight();
                 }
                 else
                 {
-                    hotspot = null;
+                    selectedHotspot = null;
+                }
+
+                // If there are no hotspots, check if we hit an actor
+                if (!selectedHotspot)
+                {
+                    selectedActor = hit.collider.gameObject.GetComponent<Actor>();
+                    if (selectedActor)
+                    {
+                        selectedActor.Select();
+                    }
+                    else
+                    {
+                        selectedActor = null;
+                    }
                 }
             }
 
@@ -127,7 +158,7 @@ public class ViveControllerInputLeft : MonoBehaviour {
             {
                 // Update pointer end position
                 laserPointer.SetPosition(1, transform.position + transform.forward * laserRange);
-                hotspot = null;
+                selectedHotspot = null;
             }
         }
         else if (CurrentTeleportState == TeleportState.Teleporting)
@@ -138,14 +169,22 @@ public class ViveControllerInputLeft : MonoBehaviour {
                 {
                     // We have finished fading in
                     CurrentTeleportState = TeleportState.None;
-                    hotspot = null;
+                    selectedHotspot = null;
                 }
                 else
                 {
                     // We have finished fading out - time to teleport!
                     Vector3 offset = OriginTransform.position - HeadTransform.position;
                     offset.y = 0;
-                    OriginTransform.position = hotspot.HotSpotPosition.GetPosition() + offset;
+                    if (selectedHotspot)
+                    {
+                        OriginTransform.position = selectedHotspot.HotSpotPosition.GetPosition() + offset;
+                    }
+                    else if (selectedActor)
+                    {
+                        OriginTransform.position = selectedActor.snapPoint.GetPosition();
+                        OriginTransform.SetParent(selectedActor.snapPoint.transform, true);
+                    }     
                 }
 
                 TeleportTimeMarker = Time.time;

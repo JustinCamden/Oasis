@@ -10,12 +10,26 @@ public class Actor : MonoBehaviour {
     AudioSource myAudioSource;
     [SerializeField]
     private DialogueTrigger lastTrigger;
+    public Position snapPoint;
+    [SerializeField]
+    private Color highlightColor;
+    [SerializeField]
+    private Color selectedColor;
+    [SerializeField]
+    MeshRenderer myMesh;
+
+    bool selected;
+    bool selectedQueue;
 
 	// Use this for initialization
 	void Start () {
 		if (!myAudioSource)
         {
             myAudioSource = GetComponent<AudioSource>();
+        }
+        if (!myMesh)
+        {
+            myMesh = GetComponent<MeshRenderer>();
         }
 	}
 	
@@ -28,6 +42,20 @@ public class Actor : MonoBehaviour {
             // Update state and signal the dialogue trigger
             speaking = false;
             lastTrigger.EndDialogue();
+        }
+
+        // Update highlighting
+        if (selectedQueue == false)
+        {
+            if (selected)
+            {
+                ActivateHighlight();
+            }
+            selected = false;
+        }
+        else
+        {
+            selectedQueue = false;
         }
 	}
 
@@ -44,5 +72,30 @@ public class Actor : MonoBehaviour {
         lookDirection.y = 0f;
         Quaternion newLookRotation = Quaternion.LookRotation(lookDirection);
         transform.rotation = newLookRotation;
+    }
+
+    public void ActivateHighlight()
+    {
+        myMesh.sharedMaterial.SetColor("_EmissionColor", highlightColor);
+    }
+
+    public void ActiveSelection()
+    {
+        myMesh.sharedMaterial.SetColor("_EmissionColor", selectedColor);
+    }
+
+    public void DeactivateHighlight()
+    {
+        myMesh.sharedMaterial.SetColor("_EmissionColor", Color.black);
+    }
+
+    public void Select()
+    {
+        if (!selected)
+        {
+            ActiveSelection();
+            selected = true;
+        }
+        selectedQueue = true;
     }
 }
