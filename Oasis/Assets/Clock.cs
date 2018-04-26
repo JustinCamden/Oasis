@@ -6,7 +6,11 @@ public class Clock : MonoBehaviour {
     public static Clock worldClock = null;
 
     [SerializeField]
-    public float timeMultiplier = 60f;
+    public float ambientTimeMultiplier = 60f;
+    [SerializeField]
+    public float dialogueTimeMultiplier = 1f;
+    [SerializeField]
+    public float currTimeMultiplier;
     [SerializeField]
     float elapsedTimeSinceLastSecond;
     [SerializeField]
@@ -15,6 +19,8 @@ public class Clock : MonoBehaviour {
     private float mMinutes;
     [SerializeField]
     private float mHours;
+    [SerializeField]
+    private int currDialoguesPlaying = 0;
 
     public delegate void OnDayReset();
     public OnDayReset onDayReset;
@@ -57,11 +63,12 @@ public class Clock : MonoBehaviour {
 
     // Use this for initialization
     void Start () {
+        currTimeMultiplier = ambientTimeMultiplier;
 	}
 	
 	// Update is called once per frame
 	void Update () {
-        elapsedTimeSinceLastSecond += Time.deltaTime * timeMultiplier;
+        elapsedTimeSinceLastSecond += Time.deltaTime * currTimeMultiplier;
         while (elapsedTimeSinceLastSecond >= 1f)
         {
             elapsedTimeSinceLastSecond -= 1f;
@@ -99,6 +106,22 @@ public class Clock : MonoBehaviour {
         currMinutes += inHours * 60f;
         currSeconds += currMinutes * 60f;
         return currSeconds;
+    }
+
+    public void AddDialogue()
+    {
+        currDialoguesPlaying += 1;
+        currTimeMultiplier = dialogueTimeMultiplier;
+    }
+
+    public void RemoveDialogue()
+    {
+        currDialoguesPlaying -= 1;
+        if (currDialoguesPlaying<= 0)
+        {
+            currDialoguesPlaying = 0;
+            currTimeMultiplier = ambientTimeMultiplier;
+        }
     }
 }
 

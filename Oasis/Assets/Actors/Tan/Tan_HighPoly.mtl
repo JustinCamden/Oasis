@@ -1,0 +1,86 @@
+newmtl CharGuy:blinn1SG
+illum 4
+Kd 0.00 0.00 0.00
+Ka 0.00 0.00 0.00
+Tf 1.00 1.00 1.00
+map_Kd CharGuy_Body_diffuse.png
+bump CharGuy_Body_normal.png -bm 0.05
+Ni 1.00
+Ks 0.00 0.00 0.00
+map_Ks CharGuy_Body_specular.png
+newmtl CharGuy:blinn2SG
+illum 4
+Kd 0.00 0.00 0.00
+Ka 0.00 0.00 0.00
+Tf 1.00 1.00 1.00
+map_Kd CharGuy_Body_diffuse.png
+Ni 1.00
+Ks 0.50 0.50 0.50
+newmtl CharGuy:blinn3SG
+illum 4
+Kd 0.00 0.00 0.00
+Ka 0.00 0.00 0.00
+Tf 1.00 1.00 1.00
+map_Kd CharGuy_Body_diffuse.png
+Ni 1.00
+Ks 0.50 0.50 0.50
+newmtl CharGuy:blinn4SG
+illum 4
+Kd 0.00 0.00 0.00
+Ka 0.00 0.00 0.00
+Tf 1.00 1.00 1.00
+map_Kd CharGuy_Top_diffuse.png
+bump CharGuy_Top_normal.png -bm 0.15
+Ni 1.00
+Ks 0.00 0.00 0.00
+map_Ks CharGuy_Top_specular.png
+newmtl CharGuy:blinn5SG
+illum 4
+Kd 0.00 0.00 0.00
+Ka 0.00 0.00 0.00
+Tf 1.00 1.00 1.00
+map_Kd CharGuy_Bottom_diffuse.png
+bump CharGuy_Bottom_normal.png -bm 0.2
+Ni 1.00
+Ks 0.00 0.00 0.00
+map_Ks CharGuy_Bottom_specular.png
+newmtl CharGuy:blinn6SG
+illum 4
+Kd 0.00 0.00 0.00
+Ka 0.00 0.00 0.00
+Tf 1.00 1.00 1.00
+map_Kd CharGuy_Shoes_diffuse.png
+bump CharGuy_Shoes_normal.png -bm 0.1
+Ni 1.00
+Ks 0.00 0.00 0.00
+map_Ks CharGuy_Shoes_specular.png
+newmtl CharGuy:blinn7SG
+illum 4
+Kd 0.00 0.00 0.00
+Ka 0.00 0.00 0.00
+Tf 1.00 1.00 1.00
+map_Kd CharGuy_Glove_diffuse.png
+bump CharGuy_Glove_normal.png -bm 0.5
+Ni 1.00
+Ks 0.00 0.00 0.00
+map_Ks CharGuy_Glove_specular.png
+newmtl CharGuy:blinn8SG
+illum 4
+Kd 0.00 0.00 0.00
+Ka 0.00 0.00 0.00
+Tf 1.00 1.00 1.00
+map_Kd CharGuy_Beard_diffuse.png
+bump CharGuy_Beard_normal.png -bm 1
+Ni 1.00
+Ks 0.00 0.00 0.00
+map_Ks CharGuy_Beard_specular.png
+newmtl CharGuy:blinn9SG
+illum 4
+Kd 0.00 0.00 0.00
+Ka 0.00 0.00 0.00
+Tf 1.00 1.00 1.00
+map_Kd CharGuy_Hair_diffuse.png
+bump CharGuy_Hair_normal.png -bm 1
+Ni 1.00
+Ks 0.00 0.00 0.00
+map_Ks CharGuy_Hair_specular.png

@@ -138,6 +138,7 @@ public class DialogueTrigger : MonoBehaviour {
         {
             sceneAudio.Play();
         }
+        Clock.worldClock.AddDialogue();
     }
 
     // Reset dialogue
@@ -153,6 +154,7 @@ public class DialogueTrigger : MonoBehaviour {
             sceneAudio.Stop();
             sceneAudio.time = 0f;
         }
+        Clock.worldClock.RemoveDialogue();
     }
 
     void OnDayReset()
