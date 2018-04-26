@@ -48,7 +48,7 @@ public class DialogueTrigger : MonoBehaviour {
     [SerializeField]
     private bool forceActorsToLocations = false;
     [SerializeField]
-    private Vector3[] forcedLocations;
+    private Position[] forcedLocations;
 
     // Use this for initialization
     void Start () {
@@ -67,7 +67,7 @@ public class DialogueTrigger : MonoBehaviour {
             {
                 for (int i = 0; i < actors.Length; i++)
                 {
-                    actors[i].transform.position = forcedLocations[i];
+                    actors[i].transform.position = forcedLocations[i].GetPosition();
                     RunDialogue();
                 }
             }

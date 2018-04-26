@@ -19,6 +19,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4012818607337380}
+  - component: {fileID: 114291632192013024}
   m_Layer: 0
   m_Name: TeleportPoint
   m_TagString: Untagged
@@ -65,8 +66,8 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1914013506464530}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -393.5617, y: 9.581839, z: -127.19917}
-  m_LocalScale: {x: 5.348232, y: 17.924177, z: 4.5323367}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 5.5, y: 18, z: 4.6}
   m_Children:
   - {fileID: 4012818607337380}
   m_Father: {fileID: 0}
@@ -124,12 +125,25 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 863e4849fea7a6e448a62e5ddc22a439, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  HotSpotPosition: {fileID: 4012818607337380}
+  HotSpotPosition: {fileID: 114291632192013024}
   autoCalculateHotSpotPosition: 1
   height: 0.5
   highlightMesh: {fileID: 23694512068652762}
   activeMaterial: {fileID: 2100000, guid: 96113ea6e208fe64aa4076503b9bd2ee, type: 2}
   highlightedMaterial: {fileID: 2100000, guid: d282d6e1e278e174ebd635409812604e, type: 2}
+--- !u!114 &114291632192013024
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1879689471943156}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7cbfcceddd8bda44c8f772dadba361db, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  color: {r: 1, g: 0, b: 0, a: 1}
+  radius: 1
 --- !u!136 &136500824166014058
 CapsuleCollider:
   m_ObjectHideFlags: 1

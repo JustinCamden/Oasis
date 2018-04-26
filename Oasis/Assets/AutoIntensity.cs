@@ -25,6 +25,8 @@ public class AutoIntensity : MonoBehaviour
     public Vector3 dayRotateSpeed;
     public Vector3 nightRotateSpeed;
 
+    public float starActivationDot = -.2f;
+
     float skySpeed = 1;
     float currRotDot = 0;
 
@@ -32,11 +34,14 @@ public class AutoIntensity : MonoBehaviour
     Skybox sky;
     Material skyMat;
 
+    public GameObject stars;
+
     void Start()
     {
 
         mainLight = GetComponent<Light>();
         skyMat = RenderSettings.skybox;
+        stars.SetActive(false);
 
     }
 
@@ -46,6 +51,15 @@ public class AutoIntensity : MonoBehaviour
         float tRange = 1 - minPoint;
         float dot = Mathf.Clamp01((Vector3.Dot(mainLight.transform.forward, Vector3.down) - minPoint) / tRange);
         float i = ((maxIntensity - minIntensity) * dot) + minIntensity;
+
+        if (dot >= starActivationDot && !stars.activeSelf)
+        {
+            stars.SetActive(true);
+        }
+        else if (dot < starActivationDot && stars.activeSelf)
+        {
+            stars.SetActive(false);
+        }
 
         mainLight.intensity = i;
 

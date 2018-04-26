@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class TeleportHotSpot : MonoBehaviour {
 
-    public Transform HotSpotPosition;
+    public Position HotSpotPosition;
     public bool autoCalculateHotSpotPosition;
     public float height = 1.5f;
     bool highlight;

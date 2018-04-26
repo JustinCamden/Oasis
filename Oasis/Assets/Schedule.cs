@@ -43,7 +43,11 @@ public class Schedule : MonoBehaviour {
             eventStates[i] = EventState.BeforeEvent;
         }
 
-        myNavAgent = GetComponent<NavMeshAgent>();
+        if (!myNavAgent)
+        {
+            myNavAgent = GetComponent<NavMeshAgent>();
+        }
+
         Clock.worldClock.onDayReset += ResetSchedule;
 	}
 	

@@ -145,7 +145,7 @@ public class ViveControllerInputLeft : MonoBehaviour {
                     // We have finished fading out - time to teleport!
                     Vector3 offset = OriginTransform.position - HeadTransform.position;
                     offset.y = 0;
-                    OriginTransform.position = hotspot.HotSpotPosition.transform.position + offset;
+                    OriginTransform.position = hotspot.HotSpotPosition.GetPosition() + offset;
                 }
 
                 TeleportTimeMarker = Time.time;
