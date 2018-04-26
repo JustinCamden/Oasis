@@ -87,6 +87,7 @@ public class Actor : MonoBehaviour {
     public void DeactivateHighlight()
     {
         myMesh.sharedMaterial.SetColor("_EmissionColor", Color.black);
+        selected = false;
     }
 
     public void Select()
