@@ -13,7 +13,7 @@ public class Schedule : MonoBehaviour {
     };
 
     [SerializeField]
-    private Vector3[] destinations;
+    private Position[] destinations;
 
     [SerializeField]
     private Vector3[] startHoursMinutesSeconds;
@@ -61,7 +61,7 @@ public class Schedule : MonoBehaviour {
                 MoveToEvent();
             }
             else if (eventStates[currEventIndex] == EventState.MovingToEvent &&
-                Vector3.Distance(transform.position, destinations[currEventIndex]) <= maxDistance)
+                Vector3.Distance(transform.position, destinations[currEventIndex].GetPosition()) <= maxDistance)
             {
                 ArriveAtEvent();
             }
@@ -71,7 +71,7 @@ public class Schedule : MonoBehaviour {
     void MoveToEvent()
     {
         myNavAgent.isStopped = false;
-        myNavAgent.SetDestination(destinations[currEventIndex]);
+        myNavAgent.SetDestination(destinations[currEventIndex].GetPosition());
         eventStates[currEventIndex] = EventState.MovingToEvent;
     }
 
