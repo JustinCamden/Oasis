@@ -63,17 +63,20 @@ public class Actor : MonoBehaviour {
 
     public void RunDialogue(AudioClip line, DialogueTrigger trigger)
     {
-        // Begin speaking and cache the trigger for later
-        myAudioSource.clip = line;
-        myAudioSource.Play();
-        lastTrigger = trigger;
-        speaking = true;
+        if (!speaking)
+        {
+            // Begin speaking and cache the trigger for later
+            myAudioSource.clip = line;
+            myAudioSource.Play();
+            lastTrigger = trigger;
+            speaking = true;
 
-        // Look to the center of the scene
-        Vector3 lookDirection = trigger.transform.position - transform.position;
-        lookDirection.y = 0f;
-        Quaternion newLookRotation = Quaternion.LookRotation(lookDirection);
-        transform.rotation = newLookRotation;
+            // Look to the center of the scene
+            Vector3 lookDirection = trigger.transform.position - transform.position;
+            lookDirection.y = 0f;
+            Quaternion newLookRotation = Quaternion.LookRotation(lookDirection);
+            transform.rotation = newLookRotation;
+        }
     }
 
     public void ActivateHighlight()

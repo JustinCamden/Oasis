@@ -57,6 +57,14 @@ public class DialogueTrigger : MonoBehaviour {
     void Start () {
         startTimePercent = Clock.CalcTimePercent(startSecond, startMinute, startHour);
         endTimePercent = Clock.CalcTimePercent(endSecond, endMinute, endHour);
+        if (Clock.worldClock.timePercent < endTimePercent)
+        {
+            currDialogeState = DialogueState.BeforeRunning;
+        }
+        else
+        {
+            currDialogeState = DialogueState.AfterRunning;
+        }
         overlappedActors = new List<Actor>();
         Clock.worldClock.onDayReset += OnDayReset;
 	}
@@ -70,13 +78,23 @@ public class DialogueTrigger : MonoBehaviour {
             {
                 for (int i = 0; i < actors.Length; i++)
                 {
-                    actors[i].transform.position = forcedLocations[i].GetPosition();
+                    actors[i].transform.position = forcedLocations[i].position;
                     RunDialogue();
                 }
             }
             else if (actorsInRange)
             {
                 RunDialogue();
+            }
+        }
+        if (currDialogeState == DialogueState.Running)
+        {
+            if (forceActorsToLocations)
+            {
+                for (int i = 0; i < actors.Length; i++)
+                {
+                    actors[i].transform.position = forcedLocations[i].position;
+                }
             }
         }
 
@@ -132,8 +150,9 @@ public class DialogueTrigger : MonoBehaviour {
         for (int i = 0; i < actors.Length; i++)
         {
             actors[i].RunDialogue(lines[i], this);
-            runningActors += 1;
+            Debug.Log(i + " " + actors[i]);
         }
+        runningActors = actors.Length;
         if (sceneAudio)
         {
             sceneAudio.Play();

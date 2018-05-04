@@ -9,9 +9,12 @@ public class Position : MonoBehaviour {
     [SerializeField]
     private float radius = 1f;
 
-    public Vector3 GetPosition()
+    public Vector3 position
     {
-        return transform.position;
+        get
+        {
+            return transform.position;
+        }
     }
 
 	// Use this for initialization

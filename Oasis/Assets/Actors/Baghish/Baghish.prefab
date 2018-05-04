@@ -101,7 +101,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1431970079389148}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 1.842}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4675208148008694}
@@ -195,10 +195,10 @@ AudioSource:
   SpatializePostEffects: 0
   Priority: 128
   DopplerLevel: 1
-  MinDistance: 1.1506653
-  MaxDistance: 500
+  MinDistance: 1
+  MaxDistance: 250
   Pan2D: 0
-  rolloffMode: 0
+  rolloffMode: 2
   BypassEffects: 0
   BypassListenerEffects: 0
   BypassReverbZones: 0
@@ -206,26 +206,32 @@ AudioSource:
     serializedVersion: 2
     m_Curve:
     - serializedVersion: 2
-      time: 0
+      time: 0.002
       value: 1
       inSlope: 0
       outSlope: 0
       tangentMode: 0
     - serializedVersion: 2
+      time: 0.80108744
+      value: 0.64053845
+      inSlope: -1.0022521
+      outSlope: -1.0022521
+      tangentMode: 0
+    - serializedVersion: 2
       time: 1
       value: 0
-      inSlope: 0
-      outSlope: 0
+      inSlope: -6.0182514
+      outSlope: -6.0182514
       tangentMode: 0
     m_PreInfinity: 2
     m_PostInfinity: 2
-    m_RotationOrder: 4
+    m_RotationOrder: 0
   panLevelCustomCurve:
     serializedVersion: 2
     m_Curve:
     - serializedVersion: 2
       time: 0
-      value: 0
+      value: 1
       inSlope: 0
       outSlope: 0
       tangentMode: 0
@@ -308,8 +314,6 @@ MonoBehaviour:
   snapPoint: {fileID: 114539347604529490}
   highlightColor: {r: 0.3882353, g: 0.9490196, b: 1, a: 0}
   selectedColor: {r: 0.85882354, g: 0.8352941, b: 0, a: 1}
-  myMesh: {fileID: 23325474297104372}
-  mySkinnedMesh: {fileID: 0}
 --- !u!114 &114539347604529490
 MonoBehaviour:
   m_ObjectHideFlags: 1

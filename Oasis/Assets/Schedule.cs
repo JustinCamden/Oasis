@@ -40,10 +40,19 @@ public class Schedule : MonoBehaviour {
             startTimes[i] = Clock.CalcTimePercent(startHoursMinutesSeconds[i].z,
                 startHoursMinutesSeconds[i].y,
                 startHoursMinutesSeconds[i].x);
-            eventStates[i] = EventState.BeforeEvent;
+            if (Clock.worldClock.timePercent <= startTimes[i])
+            {
+                eventStates[i] = EventState.BeforeEvent;
+            }
+            else
+            {
+                eventStates[i] = EventState.ArrivedAtEvent;
+                transform.position = destinations[i].position;
+                currEventIndex++;
+            }
         }
 
-        if (!myNavAgent)
+            if (!myNavAgent)
         {
             myNavAgent = GetComponent<NavMeshAgent>();
         }
@@ -61,7 +70,7 @@ public class Schedule : MonoBehaviour {
                 MoveToEvent();
             }
             else if (eventStates[currEventIndex] == EventState.MovingToEvent &&
-                Vector3.Distance(transform.position, destinations[currEventIndex].GetPosition()) <= maxDistance)
+                Vector3.Distance(transform.position, destinations[currEventIndex].position) <= maxDistance)
             {
                 ArriveAtEvent();
             }
@@ -71,7 +80,7 @@ public class Schedule : MonoBehaviour {
     void MoveToEvent()
     {
         myNavAgent.isStopped = false;
-        myNavAgent.SetDestination(destinations[currEventIndex].GetPosition());
+        myNavAgent.SetDestination(destinations[currEventIndex].position);
         eventStates[currEventIndex] = EventState.MovingToEvent;
     }
 

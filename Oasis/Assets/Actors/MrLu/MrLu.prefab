@@ -554,10 +554,10 @@ AudioSource:
   SpatializePostEffects: 0
   Priority: 128
   DopplerLevel: 1
-  MinDistance: 1.1506653
-  MaxDistance: 500
+  MinDistance: 1
+  MaxDistance: 250
   Pan2D: 0
-  rolloffMode: 0
+  rolloffMode: 2
   BypassEffects: 0
   BypassListenerEffects: 0
   BypassReverbZones: 0
@@ -565,26 +565,32 @@ AudioSource:
     serializedVersion: 2
     m_Curve:
     - serializedVersion: 2
-      time: 0
+      time: 0.002
       value: 1
       inSlope: 0
       outSlope: 0
       tangentMode: 0
     - serializedVersion: 2
+      time: 0.80108744
+      value: 0.64053845
+      inSlope: -1.0022521
+      outSlope: -1.0022521
+      tangentMode: 0
+    - serializedVersion: 2
       time: 1
       value: 0
-      inSlope: 0
-      outSlope: 0
+      inSlope: -6.0182514
+      outSlope: -6.0182514
       tangentMode: 0
     m_PreInfinity: 2
     m_PostInfinity: 2
-    m_RotationOrder: 4
+    m_RotationOrder: 0
   panLevelCustomCurve:
     serializedVersion: 2
     m_Curve:
     - serializedVersion: 2
       time: 0
-      value: 0
+      value: 1
       inSlope: 0
       outSlope: 0
       tangentMode: 0
@@ -632,7 +638,6 @@ MonoBehaviour:
   snapPoint: {fileID: 114955140621669978}
   highlightColor: {r: 0.3882353, g: 0.9490196, b: 1, a: 0}
   selectedColor: {r: 0.85882354, g: 0.8352941, b: 0, a: 1}
-  myMesh: {fileID: 23639931276825272}
 --- !u!114 &114782220025254344
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -644,10 +649,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2652b71e8d9d1534893f35159bc4bb1b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  destinations: []
-  startHoursMinutesSeconds: []
-  eventStates: 
-  startTimes: []
+  destinations:
+  - {fileID: 0}
+  - {fileID: 0}
+  startHoursMinutesSeconds:
+  - {x: 0, y: 0, z: 0}
+  - {x: 11, y: 0, z: 0}
+  eventStates: 0000000000000000
+  startTimes:
+  - 0
+  - 0
   currEventIndex: 0
   myNavAgent: {fileID: 195803186835706786}
   maxDistance: 5

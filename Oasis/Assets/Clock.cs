@@ -59,7 +59,9 @@ public class Clock : MonoBehaviour {
         {
             Destroy(gameObject);
         }
+        mTimePercent = CalcTimePercent(mSeconds, mMinutes, mHours);
     }
+
 
     // Use this for initialization
     void Start () {

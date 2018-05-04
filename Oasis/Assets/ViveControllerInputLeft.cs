@@ -178,11 +178,11 @@ public class ViveControllerInputLeft : MonoBehaviour {
                     offset.y = 0;
                     if (selectedHotspot)
                     {
-                        OriginTransform.position = selectedHotspot.HotSpotPosition.GetPosition() + offset;
+                        OriginTransform.position = selectedHotspot.HotSpotPosition.position + offset;
                     }
                     else if (selectedActor)
                     {
-                        OriginTransform.position = selectedActor.snapPoint.GetPosition();
+                        OriginTransform.position = selectedActor.snapPoint.position;
                         OriginTransform.SetParent(selectedActor.snapPoint.transform, true);
                     }     
                 }
