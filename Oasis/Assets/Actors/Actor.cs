@@ -23,6 +23,8 @@ public class Actor : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
+
+        // Grab components
 		if (!myAudioSource)
         {
             myAudioSource = GetComponent<AudioSource>();
