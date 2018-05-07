@@ -61,6 +61,24 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+--- !u!1 &1256129851519214
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 4971618743874700}
+  - component: {fileID: 33427423703734798}
+  - component: {fileID: 23935377484073078}
+  - component: {fileID: 114884271807967770}
+  m_Layer: 0
+  m_Name: Heatmapper
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
 --- !u!1 &1399857383386644
 GameObject:
   m_ObjectHideFlags: 1
@@ -176,6 +194,7 @@ Transform:
   m_Children:
   - {fileID: 4629084082048388}
   - {fileID: 4358922254038304}
+  - {fileID: 4971618743874700}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -287,6 +306,19 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 4358922254038304}
+  m_RootOrder: 2
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!4 &4971618743874700
+Transform:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1256129851519214}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 4128684175540062}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!23 &23103134754809312
@@ -459,6 +491,40 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
+--- !u!23 &23935377484073078
+MeshRenderer:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1256129851519214}
+  m_Enabled: 1
+  m_CastShadows: 1
+  m_ReceiveShadows: 1
+  m_DynamicOccludee: 1
+  m_MotionVectors: 1
+  m_LightProbeUsage: 1
+  m_ReflectionProbeUsage: 1
+  m_Materials:
+  - {fileID: 2100000, guid: 28b15b26581427f4f98c058f0d04598a, type: 2}
+  m_StaticBatchInfo:
+    firstSubMesh: 0
+    subMeshCount: 0
+  m_StaticBatchRoot: {fileID: 0}
+  m_ProbeAnchor: {fileID: 0}
+  m_LightProbeVolumeOverride: {fileID: 0}
+  m_ScaleInLightmap: 1
+  m_PreserveUVs: 1
+  m_IgnoreNormalsForChartDetection: 0
+  m_ImportantGI: 0
+  m_StitchLightmapSeams: 0
+  m_SelectedEditorRenderState: 3
+  m_MinimumChartSize: 4
+  m_AutoUVMaxDistance: 0.5
+  m_AutoUVMaxAngle: 89
+  m_LightmapParameters: {fileID: 0}
+  m_SortingLayerID: 0
+  m_SortingLayer: 0
+  m_SortingOrder: 0
 --- !u!23 &23942342295826852
 MeshRenderer:
   m_ObjectHideFlags: 1
@@ -514,6 +580,13 @@ MeshFilter:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1039365412281934}
   m_Mesh: {fileID: 4300008, guid: e4f567c2bf571e444a503c593c65e24c, type: 3}
+--- !u!33 &33427423703734798
+MeshFilter:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1256129851519214}
+  m_Mesh: {fileID: 10207, guid: 0000000000000000e000000000000000, type: 0}
 --- !u!33 &33443214111200482
 MeshFilter:
   m_ObjectHideFlags: 1
@@ -555,7 +628,7 @@ AudioSource:
   Priority: 128
   DopplerLevel: 1
   MinDistance: 1
-  MaxDistance: 250
+  MaxDistance: 50
   Pan2D: 0
   rolloffMode: 2
   BypassEffects: 0
@@ -652,16 +725,46 @@ MonoBehaviour:
   destinations:
   - {fileID: 0}
   - {fileID: 0}
+  - {fileID: 0}
   startHoursMinutesSeconds:
-  - {x: 0, y: 0, z: 0}
+  - {x: 7, y: 0, z: 0}
   - {x: 11, y: 0, z: 0}
-  eventStates: 0000000000000000
+  - {x: 15, y: 0, z: 0}
+  eventStates: 000000000000000000000000
   startTimes:
+  - 0
   - 0
   - 0
   currEventIndex: 0
   myNavAgent: {fileID: 195803186835706786}
   maxDistance: 5
+  startPosition: {x: 0, y: 0, z: 0}
+  walkingMetersPerSecond: 2
+  accelerationPerSecond: 8
+  dilatedTimeMultiplier: 0.1
+--- !u!114 &114884271807967770
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1256129851519214}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 22d50a9b4d508874a8220db51031479f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  heatMap: {fileID: 1855828578994114, guid: d9dd2fd4fd2c8c449b02eb2917e35c08, type: 2}
+  heatMapColor: {r: 0.09411766, g: 0.6117647, b: 0.18039216, a: 1}
+  heatmapMaterial: {fileID: 2100000, guid: 28b15b26581427f4f98c058f0d04598a, type: 2}
+  zoneColors:
+  - {r: 0.09411766, g: 0.6117647, b: 0.18039216, a: 0}
+  - {r: 0.09411766, g: 0.6117647, b: 0.18039216, a: 0}
+  - {r: 0.09411766, g: 0.6117647, b: 0.18039216, a: 0}
+  - {r: 0.7372549, g: 0.85490197, b: 0.2627451, a: 0}
+  - {r: 0.7372549, g: 0.854902, b: 0.2627451, a: 0}
+  - {r: 1, g: 0.6117647, b: 0.17254902, a: 0}
+  - {r: 1, g: 0.6117647, b: 0.17254902, a: 0}
+  spaceBetweenMaps: 5
 --- !u!114 &114955140621669978
 MonoBehaviour:
   m_ObjectHideFlags: 1

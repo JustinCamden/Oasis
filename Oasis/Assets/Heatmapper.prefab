@@ -22,6 +22,7 @@ GameObject:
   - component: {fileID: 33606393492603384}
   - component: {fileID: 23301446357927420}
   - component: {fileID: 114599393283539544}
+  - component: {fileID: 135819231367940158}
   m_Layer: 0
   m_Name: Heatmapper
   m_TagString: Untagged
@@ -94,7 +95,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 22d50a9b4d508874a8220db51031479f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  heatMap: {fileID: 0}
-  heatMapColor: {r: 1, g: 0, b: 0, a: 1}
-  heatmapMaterial: {fileID: 0}
+  heatMap: {fileID: 1855828578994114, guid: d9dd2fd4fd2c8c449b02eb2917e35c08, type: 2}
+  heatMapColor: {r: 0.09411766, g: 0.6117647, b: 0.18039216, a: 1}
+  heatmapMaterial: {fileID: 2100000, guid: 28b15b26581427f4f98c058f0d04598a, type: 2}
+  zoneColors: []
   spaceBetweenMaps: 5
+--- !u!135 &135819231367940158
+SphereCollider:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1855828578994114}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 0.5
+  m_Center: {x: 0, y: 0, z: 0}

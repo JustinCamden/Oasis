@@ -136,7 +136,7 @@ public class Clock : MonoBehaviour {
         if (currDialoguesPlaying<= 0)
         {
             currDialoguesPlaying = 0;
-            currTimeMultiplier = ambientTimeMultiplier;
+            timeMultipler = ambientTimeMultiplier;
         }
     }
 

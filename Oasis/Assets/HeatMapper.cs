@@ -11,6 +11,9 @@ public class HeatMapper : MonoBehaviour {
     [SerializeField]
     private Material heatmapMaterial;
 
+    [SerializeField]
+    private Color[] zoneColors;
+
     List<GameObject> heatMaps;
 
     [SerializeField]
@@ -49,7 +52,7 @@ public class HeatMapper : MonoBehaviour {
     void SpawnHeatMap(Vector3 spawnPosition)
     {
         GameObject newMap = Instantiate(heatMap, spawnPosition, Quaternion.identity);
-        heatMap.GetComponent<MeshRenderer>().material = heatmapMaterial;
+        newMap.GetComponent<MeshRenderer>().material.SetColor("_EmissionColor", heatMapColor);
         heatMaps.Add(newMap);
     }
 
@@ -60,5 +63,15 @@ public class HeatMapper : MonoBehaviour {
             Destroy(currMap, 0.0001f);
         }
         heatMaps.Clear();
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        HeatmapZone heatZone = other.gameObject.GetComponent<HeatmapZone>();
+        if (heatZone && heatZone.zoneNumber < zoneColors.Length - 1)
+        {
+            heatMapColor = zoneColors[heatZone.zoneNumber];
+            heatmapMaterial.SetColor("_EmissionColor", heatMapColor);
+        }
     }
 }

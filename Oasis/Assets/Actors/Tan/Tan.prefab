@@ -29,6 +29,24 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+--- !u!1 &1358121449977412
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 4918545464618470}
+  - component: {fileID: 33525165722472308}
+  - component: {fileID: 23697136015123234}
+  - component: {fileID: 114219159844067514}
+  m_Layer: 0
+  m_Name: Heatmapper
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
 --- !u!1 &1733176685432524
 GameObject:
   m_ObjectHideFlags: 0
@@ -98,13 +116,27 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1733176685432524}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 7.18, y: 0, z: 5.06}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4007669361945040}
   - {fileID: 4363500474940010}
+  - {fileID: 4918545464618470}
   m_Father: {fileID: 0}
   m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!4 &4918545464618470
+Transform:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1358121449977412}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 4604377222476994}
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!23 &23155159537602982
 MeshRenderer:
@@ -140,6 +172,47 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
+--- !u!23 &23697136015123234
+MeshRenderer:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1358121449977412}
+  m_Enabled: 1
+  m_CastShadows: 1
+  m_ReceiveShadows: 1
+  m_DynamicOccludee: 1
+  m_MotionVectors: 1
+  m_LightProbeUsage: 1
+  m_ReflectionProbeUsage: 1
+  m_Materials:
+  - {fileID: 2100000, guid: 28b15b26581427f4f98c058f0d04598a, type: 2}
+  m_StaticBatchInfo:
+    firstSubMesh: 0
+    subMeshCount: 0
+  m_StaticBatchRoot: {fileID: 0}
+  m_ProbeAnchor: {fileID: 0}
+  m_LightProbeVolumeOverride: {fileID: 0}
+  m_ScaleInLightmap: 1
+  m_PreserveUVs: 1
+  m_IgnoreNormalsForChartDetection: 0
+  m_ImportantGI: 0
+  m_StitchLightmapSeams: 0
+  m_SelectedEditorRenderState: 3
+  m_MinimumChartSize: 4
+  m_AutoUVMaxDistance: 0.5
+  m_AutoUVMaxAngle: 89
+  m_LightmapParameters: {fileID: 0}
+  m_SortingLayerID: 0
+  m_SortingLayer: 0
+  m_SortingOrder: 0
+--- !u!33 &33525165722472308
+MeshFilter:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1358121449977412}
+  m_Mesh: {fileID: 10207, guid: 0000000000000000e000000000000000, type: 0}
 --- !u!33 &33714781635616892
 MeshFilter:
   m_ObjectHideFlags: 1
@@ -166,10 +239,10 @@ AudioSource:
   SpatializePostEffects: 0
   Priority: 128
   DopplerLevel: 1
-  MinDistance: 1.1506653
-  MaxDistance: 500
+  MinDistance: 1
+  MaxDistance: 50
   Pan2D: 0
-  rolloffMode: 0
+  rolloffMode: 2
   BypassEffects: 0
   BypassListenerEffects: 0
   BypassReverbZones: 0
@@ -177,26 +250,32 @@ AudioSource:
     serializedVersion: 2
     m_Curve:
     - serializedVersion: 2
-      time: 0
+      time: 0.002
       value: 1
       inSlope: 0
       outSlope: 0
       tangentMode: 0
     - serializedVersion: 2
+      time: 0.80108744
+      value: 0.64053845
+      inSlope: -1.0022521
+      outSlope: -1.0022521
+      tangentMode: 0
+    - serializedVersion: 2
       time: 1
       value: 0
-      inSlope: 0
-      outSlope: 0
+      inSlope: -6.0182514
+      outSlope: -6.0182514
       tangentMode: 0
     m_PreInfinity: 2
     m_PostInfinity: 2
-    m_RotationOrder: 4
+    m_RotationOrder: 0
   panLevelCustomCurve:
     serializedVersion: 2
     m_Curve:
     - serializedVersion: 2
       time: 0
-      value: 0
+      value: 1
       inSlope: 0
       outSlope: 0
       tangentMode: 0
@@ -261,6 +340,29 @@ MonoBehaviour:
   snapPoint: {fileID: 114685182488561846}
   highlightColor: {r: 0.3882353, g: 0.9490196, b: 1, a: 0}
   selectedColor: {r: 0.85882354, g: 0.8352941, b: 0, a: 1}
+--- !u!114 &114219159844067514
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1358121449977412}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 22d50a9b4d508874a8220db51031479f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  heatMap: {fileID: 1855828578994114, guid: d9dd2fd4fd2c8c449b02eb2917e35c08, type: 2}
+  heatMapColor: {r: 0.09411766, g: 0.6117647, b: 0.18039216, a: 1}
+  heatmapMaterial: {fileID: 2100000, guid: 28b15b26581427f4f98c058f0d04598a, type: 2}
+  zoneColors:
+  - {r: 0.09411765, g: 0.6117647, b: 0.18039216, a: 1}
+  - {r: 0.45882353, g: 0.7372549, b: 0.22352941, a: 0}
+  - {r: 0, g: 0.49019608, b: 0.13725491, a: 0}
+  - {r: 0.09411766, g: 0.6117647, b: 0.18039216, a: 0}
+  - {r: 0.09411766, g: 0.6117647, b: 0.18039216, a: 0}
+  - {r: 0.09411766, g: 0.6117647, b: 0.18039216, a: 0}
+  - {r: 0.45882356, g: 0.7372549, b: 0.22352943, a: 0}
+  spaceBetweenMaps: 5
 --- !u!114 &114685182488561846
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -285,13 +387,29 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2652b71e8d9d1534893f35159bc4bb1b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  destinations: []
-  startHoursMinutesSeconds: []
-  eventStates: 
-  startTimes: []
+  destinations:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  startHoursMinutesSeconds:
+  - {x: 8, y: 0, z: 0}
+  - {x: 12, y: 0, z: 0}
+  - {x: 15, y: 30, z: 0}
+  - {x: 17, y: 15, z: 0}
+  eventStates: 00000000000000000000000000000000
+  startTimes:
+  - 0
+  - 0
+  - 0
+  - 0
   currEventIndex: 0
   myNavAgent: {fileID: 195827775011321144}
   maxDistance: 5
+  startPosition: {x: 0, y: 0, z: 0}
+  walkingMetersPerSecond: 2
+  accelerationPerSecond: 8
+  dilatedTimeMultiplier: 0.1
 --- !u!143 &143594276078178572
 CharacterController:
   m_ObjectHideFlags: 1
